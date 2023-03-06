@@ -3,7 +3,7 @@ import { List, Item, Button } from './ContactsList.styled';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts, selectFilterContacts } from 'redux/selectors';
-import { deleteContacts, fetchContacts } from 'redux/contactAction';
+import { deleteContacts, fetchContacts } from 'redux/Contacts/contactAction';
 
 export const ContactList = () => {
   const contacts = useSelector(selectContacts);

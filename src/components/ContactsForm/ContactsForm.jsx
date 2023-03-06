@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
+import { addContacts } from '../../redux/Contacts/contactAction';
 import { selectContacts } from 'redux/selectors';
-import { addContacts } from 'redux/contactAction';
-import { Form, Label, Input, Button } from './ContactsForm.styled';
+import { TextField } from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
@@ -21,10 +25,11 @@ export const ContactForm = () => {
         setNumber(value);
         break;
       default:
+        break;
     }
   };
 
-  const submitForm = newContact => {
+  const formSubmit = newContact => {
     const isExist = contacts.find(
       cont =>
         cont.name.toLowerCase().trim() === newContact.name.toLowerCase().trim()
@@ -34,47 +39,56 @@ export const ContactForm = () => {
     } else if (
       (newContact.name.trim() === '', newContact.number.trim() === '')
     ) {
-      return alert('Write all forms');
+      return alert('Заполните все поля');
     }
     dispatch(addContacts(newContact));
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    submitForm({ name, number, id: nanoid() });
-    reset();
-  };
-
-  const reset = () => {
+    formSubmit({ name, number, id: nanoid() });
     setName('');
     setNumber('');
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Label htmlFor="contact_name">Name</Label>
-      <Input
-        onChange={handleChange}
-        id="contact_name"
-        type="text"
-        name="name"
-        value={name}
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Mykola, Genka Metla, Charles de Batz de Castelmore d'Artagnan"
-        required
-      />
-      <Label htmlFor="contact_number">Number</Label>
-      <Input
-        onChange={handleChange}
-        value={number}
-        id="contact_number"
-        type="tel"
-        name="number"
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-        required
-      />
-      <Button type="submit">Add contact</Button>
-    </Form>
+    <Container component="main" maxWidth="sm">
+      <CssBaseline />
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        noValidate
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <TextField
+          onChange={handleChange}
+          required
+          id="standard-required"
+          label="Name"
+          name="name"
+          value={name}
+          type="text"
+          variant="standard"
+        />
+        <TextField
+          onChange={handleChange}
+          required
+          id="standard-number"
+          label="Number"
+          name="number"
+          value={number}
+          type="number"
+          variant="standard"
+        />
+        <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
+          Add contact
+        </Button>
+      </Box>
+    </Container>
   );
 };
