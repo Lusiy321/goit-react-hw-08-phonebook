@@ -7,12 +7,12 @@ import { selectToken } from 'redux/Auth/auth-selectors';
 import AppBar from '@mui/material/AppBar';
 import { Grid } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { teal } from '@mui/material/colors';
+
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: teal[300],
+      main: '#1976d2',
     },
     secondary: {
       main: '#f44436',

@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 export const List = styled.ul`
   padding: 20px;
-  background-color: gray;
+  background-color: #FFFF;
 `;
 
 export const Item = styled.li`
   display: flex;
+  font-size: 24px;
   justify-content: space-between;
   align-items: baseline;
   margin: 20px 10px;

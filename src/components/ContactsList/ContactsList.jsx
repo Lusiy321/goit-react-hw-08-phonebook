@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import { List, Item, Button } from './ContactsList.styled';
+import { List, Item } from './ContactsList.styled';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts, selectFilterContacts } from 'redux/selectors';
 import { deleteContacts, fetchContacts } from 'redux/Contacts/contactAction';
+import Button from '@mui/material/Button';
 
 export const ContactList = () => {
   const contacts = useSelector(selectContacts);
@@ -31,7 +32,7 @@ export const ContactList = () => {
           <p>
             {name} : {number}
           </p>
-          <Button type="button" onClick={() => dispatch(deleteContacts(id))}>
+          <Button type="button" variant="contained" sx={{ mt: 3, mb: 2 }} onClick={() => dispatch(deleteContacts(id))}>
             Delete
           </Button>
         </Item>

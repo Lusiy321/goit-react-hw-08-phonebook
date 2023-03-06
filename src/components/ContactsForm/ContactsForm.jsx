@@ -73,7 +73,8 @@ export const ContactForm = () => {
           name="name"
           value={name}
           type="text"
-          variant="standard"
+          placeholder='Enter the name'
+          variant="filled"
         />
         <TextField
           onChange={handleChange}
@@ -83,7 +84,8 @@ export const ContactForm = () => {
           name="number"
           value={number}
           type="number"
-          variant="standard"
+          placeholder="Enter phone number"
+          variant="filled"
         />
         <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
           Add contact

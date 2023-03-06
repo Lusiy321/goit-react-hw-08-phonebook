@@ -21,7 +21,7 @@ export const HomePage = () => {
           align="center"
           color="text.primary"
         >
-          Hello guest! {!token && 'Please sign in/sign up'}
+          Hello user! {!token && 'Please sign in/sign up'}
         </Typography>
       </Container>
     </Box>
